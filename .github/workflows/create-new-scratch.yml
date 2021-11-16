@@ -28,7 +28,7 @@ jobs:
 
       - name: Create org
         run: |
-          sfdx force:org:create -v devhub -f config/project-scratch-def.json -s
-          sfdx force:source:push
-          sfdx force:org:display --verbose
+          npx sfdx force:org:create -v devhub -f config/project-scratch-def.json -s
+          npx sfdx force:source:push
+          npx sfdx force:org:display --verbose
 
