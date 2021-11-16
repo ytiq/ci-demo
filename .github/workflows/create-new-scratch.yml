@@ -30,6 +30,7 @@ jobs:
         run: |
           npx sfdx force:org:create -v devhub -f config/project-scratch-def.json -s -a new-org
           npx sfdx force:source:push
+          sfdx force:user:password:generate
           npx sfdx force:org:display --verbose
 
       - name: Handle fail
