@@ -1,12 +1,13 @@
 name: Create Scratch Org
 
 on:
-  create
+  create:
   workflow_call:
     secrets:
       DEVHUB_SDFXURL:
         description: 'SFDXURL to login into Devhub for Scratch Org creation'
         required: true
+    
 
 jobs:
   build:
