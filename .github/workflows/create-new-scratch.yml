@@ -33,6 +33,6 @@ jobs:
           npx sfdx force:org:display --verbose
 
       - name: Handle fail
-        if: ${{ !failure() }} 
+        if: ${{ failure() }}
         run: |
-          npx sfdx force:org:delete -u new-org -p
+          npx sfdx force:org:delete -p
