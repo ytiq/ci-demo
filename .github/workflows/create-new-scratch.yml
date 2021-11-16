@@ -18,12 +18,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install salesforce CLI
-        run: npm install sfdx-cli
+        run: npm install sfdx-cli npx
 
       - name: Authenticate devhub
         run: |
           echo ${{ secrets.DEVHUB_SFDXURL }} > ./sfdx-devhub-url
-          sfdx force:auth:sfdxurl:store --sfdxurlfile ./sfdx-devhub-url --setalias devhub
+          npx sfdx force:auth:sfdxurl:store --sfdxurlfile ./sfdx-devhub-url --setalias devhub
           rm ./sfdx-devhub-url
 
       - name: Create org
