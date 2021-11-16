@@ -1,0 +1,33 @@
+name: Create Scratch Org
+
+on:
+  create
+  workflow_call:
+    secrets:
+      DEVHUB_SDFXURL:
+        description: 'SFDXURL to login into Devhub for Scratch Org creation'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install salesforce CLI
+        run: npm install sfdx-cli
+
+      - name: Authenticate devhub
+        run: |
+          echo ${{ secrets.DEVHUB_SFDXURL }} > ./sfdx-devhub-url
+          sfdx force:auth:sfdxurl:store --sfdxurlfile ./sfdx-devhub-url --setalias devhub
+          rm ./sfdx-devhub-url
+
+      - name: Create org
+        run: |
+          sfdx force:org:create -v devhub -f config/project-scratch-def.json -s
+          sfdx force:source:push
+          sfdx force:org:display --verbose
+
