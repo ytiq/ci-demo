@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "ci-demo2",
+  "name": "ci-demo",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "52.0"
