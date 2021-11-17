@@ -4,7 +4,7 @@ on:
   create:
   workflow_call:
     secrets:
-      DEVHUB_SDFXURL:
+      DEVHUB_SFDXURL:
         description: 'SFDXURL to login into Devhub for Scratch Org creation'
         required: true
     
@@ -28,7 +28,12 @@ jobs:
 
       - name: Create org
         run: |
-          sfdx force:org:create -v devhub -f config/project-scratch-def.json -s
-          sfdx force:source:push
-          sfdx force:org:display --verbose
+          npx sfdx force:org:create -v devhub -f config/project-scratch-def.json -s -a new-org
+          npx sfdx force:source:push
+          npx sfdx force:user:password:generate -v devhub
+          npx sfdx force:org:display --verbose
 
+      - name: Handle fail
+        if: ${{ failure() }}
+        run: |
+          npx sfdx force:org:delete -p
