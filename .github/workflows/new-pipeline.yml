@@ -1,0 +1,13 @@
+name: Test
+
+on:
+  push:
+    branches: [ feature3 ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: step 1
+        run: echo "Some test code"
