@@ -1,6 +1,6 @@
-@IsTest static  class DemoClassTest {
+@IsTest class DemoClassTest {
     
     @IsTest static void testNothing() {
-        
+
     }
 }
